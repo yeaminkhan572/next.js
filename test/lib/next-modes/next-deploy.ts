@@ -111,6 +111,14 @@ export class NextDeployInstance extends NextInstance {
       )
     }
 
+    if (process.env.IS_WEBPACK_TEST) {
+      additionalEnv.push(`IS_WEBPACK_TEST=${process.env.IS_WEBPACK_TEST}`)
+    }
+
+    if (process.env.IS_TURBOPACK_TEST) {
+      additionalEnv.push(`IS_TURBOPACK_TEST=${process.env.IS_TURBOPACK_TEST}`)
+    }
+
     const deployRes = await execa(
       'vercel',
       [
